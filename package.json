@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "build": "wp-scripts build --webpack-src-dir=blocks/ --output-path=dist/",
+    "format:js": "wp-scripts format ./blocks",
+    "format:php": "composer run-script format",
+    "lint:js": "wp-scripts lint-js ./blocks/",
+    "lint:php": "composer run-script lint"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^24.6.0"
+  }
+}

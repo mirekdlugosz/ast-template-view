@@ -1,0 +1,55 @@
+name: CD
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+\.[0-9]+\.[0-9]+'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  create-archive:
+    name: "Create archive with a plugin"
+
+    runs-on: ubuntu-latest
+
+    permissions:
+        contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          ini-values: "memory_limit=1G"
+          coverage: none
+
+      - name: Setup node.js
+        uses: actions/setup-node@v3
+        with:
+            node-version: '16'
+
+      - name: Install newest npm
+        run: npm i -g npm@latest
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v2
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build frontend assets
+        run: npm run build
+
+      - name: Create WordPress plugin archive
+        run: composer archive --file="ast-template-view-${{ github.ref_name }}"
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+            files: ast-template-view*.zip

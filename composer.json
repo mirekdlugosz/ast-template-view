@@ -1,0 +1,37 @@
+{
+    "name": "mirekdlugosz/ast-template-view",
+    "type": "wordpress-plugin",
+    "homepage": "https://github.com/mirekdlugosz/ast-template-view/",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Mirek Długosz",
+            "homepage": "https://mirekdlugosz.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/WordPress/WordPress-Coding-Standards"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "archive-format": "zip"
+    },
+    "require-dev": {
+        "wp-coding-standards/wpcs": "dev-develop",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+        "phpcompatibility/phpcompatibility-wp": "^2.1"
+    },
+    "scripts": {
+        "lint": "phpcs --report-full --report-checkstyle=./phpcs-report.xml",
+        "format": "phpcbf --report=summary,source"
+    },
+    "archive": {
+        "name": "ast-template-view",
+        "exclude": ["node_modules", "vendor/", ".*", "*.zip"]
+    }
+}

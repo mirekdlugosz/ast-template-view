@@ -1,0 +1,15 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "associationforsoftwaretesting/mark-page-as-template",
+	"version": "1.0.0",
+	"title": "meta-block",
+	"category": "embed",
+	"icon": "generic",
+	"description": "Allow page authors to mark specific pages as templates - used in internal process",
+	"supports": {
+		"html": false
+	},
+	"textdomain": "associationforsoftwaretesting",
+	"editorScript": "file:./index.js"
+}

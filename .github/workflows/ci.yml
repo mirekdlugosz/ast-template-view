@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  # Run on pushes to select branches and on all pull requests.
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php_version: ["8.0", "8.1", "8.2"]
+        node_version: ["16"]
+
+    name: "Lint: PHP ${{ matrix.php_version }} node.js ${{ matrix.node_version }}"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php_version }}
+          ini-values: "memory_limit=1G"
+          coverage: none
+          tools: cs2pr
+
+      - name: Setup node.js
+        uses: actions/setup-node@v3
+        with:
+            node-version: ${{ matrix.node-version }}
+
+      - name: Install newest npm
+        run: npm i -g npm@latest
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v2
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Actually lint PHP
+        run: npm run lint:php
+
+      - name: Include PHP lint results in PR
+        run: cs2pr ./phpcs-report.xml
+
+      - name: Actually lint JS
+        run: npm run lint:js
