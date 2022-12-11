@@ -7,12 +7,10 @@
  * Author: Mirek Długosz
  * Author URI: https://mirekdlugosz.com/
  * Text Domain: associationforsoftwaretesting
- * Update URI: false
+ * Update URI: https://github.com/mirekdlugosz/ast-template-view/
  *
  * @package AssociationForSoftwareTesting\TemplateView
  */
-
-// FIXME: Update URI.
 
 const PAGE_TEMPLATE_META_KEY = 'ast_page_is_template';
 const VIEWS_QUERY_VAR        = 'ast_custom_filter';
