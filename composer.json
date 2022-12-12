@@ -9,12 +9,6 @@
             "homepage": "https://mirekdlugosz.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/WordPress/WordPress-Coding-Standards"
-        }
-    ],
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
@@ -22,7 +16,7 @@
         "archive-format": "zip"
     },
     "require-dev": {
-        "wp-coding-standards/wpcs": "dev-develop",
+        "wp-coding-standards/wpcs": "^3.0",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
         "phpcompatibility/phpcompatibility-wp": "^2.1"
     },
