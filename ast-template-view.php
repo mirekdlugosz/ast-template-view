@@ -20,15 +20,17 @@ const VIEWS_QUERY_VAR        = 'ast_custom_filter';
  * Register custom post meta key.
  */
 function ast_register_post_meta() {
-	register_post_meta(
-		'page',
-		PAGE_TEMPLATE_META_KEY,
-		array(
-			'show_in_rest' => true,
-			'single'       => true,
-			'type'         => 'boolean',
-		)
-	);
+	foreach ( array( 'page', 'post' ) as $post_type ) {
+		register_post_meta(
+			$post_type,
+			PAGE_TEMPLATE_META_KEY,
+			array(
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'boolean',
+			)
+		);
+	}
 }
 
 /**
@@ -72,7 +74,7 @@ add_filter( 'query_vars', 'ast_query_vars' );
 function ast_views_edit_page( $views ) {
 	global $wpdb;
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	$post_type = $_GET['post_type'];
+	$post_type = $_GET['post_type'] ?? 'post';
 
 	$ast_view_args = array(
 		'post_type'     => $post_type,
@@ -88,8 +90,10 @@ function ast_views_edit_page( $views ) {
             JOIN $wpdb->postmeta AS pmeta
             ON posts.ID = pmeta.post_id
             WHERE post_status = 'draft'
+            AND posts.post_type = %s
             AND pmeta.meta_key = %s
             AND pmeta.meta_value = 1",
+			$post_type,
 			PAGE_TEMPLATE_META_KEY
 		)
 	);
@@ -119,6 +123,7 @@ function ast_views_edit_page( $views ) {
 }
 
 add_filter( 'views_edit-page', 'ast_views_edit_page' );
+add_filter( 'views_edit-post', 'ast_views_edit_page' );
 
 
 /**
