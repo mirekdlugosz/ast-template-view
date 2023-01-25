@@ -1,7 +1,7 @@
 {
-    "name": "mirekdlugosz/ast-template-view",
+    "name": "associationforsoftwaretesting/ast-template-view",
     "type": "wordpress-plugin",
-    "homepage": "https://github.com/mirekdlugosz/ast-template-view/",
+    "homepage": "https://github.com/associationforsoftwaretesting/ast-template-view/",
     "minimum-stability": "dev",
     "authors": [
         {

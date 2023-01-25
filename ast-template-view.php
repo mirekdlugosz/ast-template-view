@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name: AST Template View On Pages Table
- * Plugin URI: https://github.com/mirekdlugosz/ast-template-view/
+ * Plugin URI: https://github.com/associationforsoftwaretesting/ast-template-view/
  * Description: Allow page authors to mark specific pages as templates - used in internal process
- * Version: 2022.12.11
+ * Version: 2023.01.25
  * Author: Mirek Długosz
  * Author URI: https://mirekdlugosz.com/
  * Text Domain: associationforsoftwaretesting
- * Update URI: https://github.com/mirekdlugosz/ast-template-view/
+ * Update URI: https://github.com/associationforsoftwaretesting/ast-template-view/
  *
  * @package AssociationForSoftwareTesting\TemplateView
  */
